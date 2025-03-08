@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Community - 개발자 커뮤니티</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header>
+    <h1>Dev Community</h1>
+    <p>개발자를 위한 지식 공유 & Q&A 플랫폼</p>
+</header>
+
+<div class="container">
+    <div class="top-bar">
+        <input type="text" class="search-bar" placeholder="검색어를 입력하세요...">
+        <a th:href="@{/write}" class="write-btn">글 작성</a>
+    </div>
+
+    <div class="categories">
+        <a href="#" class="active">전체</a>
+        <a href="#">질문</a>
+        <a href="#">토론</a>
+        <a href="#">정보 공유</a>
+        <a href="#">AI 추천</a>
+    </div>
+
+    <div class="post-list">
+        <div class="post-item" th:each="post : ${posts}">
+            <h2><a th:href="@{/post/{id}(id=${post.id})}" th:text="${post.title}">게시글 제목</a></h2>
+            <p class="meta">
+                <span th:text="${post.author}">작성자</span> •
+                <span th:text="${post.date}">날짜</span> •
+                조회수 <span th:text="${post.views}">0</span> •
+                추천 <span th:text="${post.likes}">0</span> •
+                댓글 <span th:text="${post.comments}">0</span>
+            </p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
